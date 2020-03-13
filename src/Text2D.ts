@@ -17,6 +17,7 @@ export interface TextOptions {
   backgroundColor?: string;
   horizontalPadding?: number;
   verticalPadding?: number;
+  ceilPowerOfTwo?: boolean;
 }
 
 export abstract class Text2D extends THREE.Object3D {
@@ -38,6 +39,7 @@ export abstract class Text2D extends THREE.Object3D {
   protected _backgroundColor: string;
   protected _horizontalPadding: number;
   protected _verticalPadding: number;
+  protected _ceilPowerOfTwo: boolean;
 
   protected canvas: CanvasText;
 
@@ -57,6 +59,7 @@ export abstract class Text2D extends THREE.Object3D {
     this._backgroundColor = options.backgroundColor || 'transparent';
     this._horizontalPadding = options.horizontalPadding || 0;
     this._verticalPadding = options.verticalPadding || 0;
+    this._ceilPowerOfTwo = typeof options.ceilPowerOfTwo === "undefined" ? true : options.ceilPowerOfTwo;
 
     this.canvas = new CanvasText()
 

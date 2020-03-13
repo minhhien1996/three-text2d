@@ -29,10 +29,17 @@ export class MeshText2D extends Text2D {
       align: this.align,
       backgroundColor: this._backgroundColor,
       horizontalPadding: this._horizontalPadding,
-      verticalPadding: this._verticalPadding
+      verticalPadding: this._verticalPadding,
+      ceilPowerOfTwo: this._ceilPowerOfTwo
     })
 
     this.texture = new THREE.Texture(this.canvas.canvas);
+
+    // texture size is not required to be power of two if minFilter is THREE.LinearFilter
+    if (!this._ceilPowerOfTwo) {
+      this.texture.minFilter = THREE.LinearFilter
+    }
+
     this.texture.needsUpdate = true;
     this.applyAntiAlias()
 
